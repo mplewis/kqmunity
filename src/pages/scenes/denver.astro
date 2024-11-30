@@ -1,0 +1,159 @@
+---
+import { Image } from "astro:assets";
+import MainLayout from "../../layouts/MainLayout.astro";
+import DenverSkyline from "../../images/denver-skyline.webp";
+import FlytecoTower from "../../images/flyteco-tower.png";
+import CabWithPlayers from "../../images/cab-with-players.jpg";
+---
+
+<MainLayout>
+  <section class="relative px-12 py-16 text-center">
+    <div class="absolute inset-0 w-full h-full">
+      <Image
+        src={DenverSkyline}
+        alt="Killer Queen arcade cabinets in an arcade"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+    </div>
+    <div class="flex-1 relative z-1">
+      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+        Killer Queen Denver
+      </h1>
+    </div>
+    <div class="flex-1 relative z-1">
+      <p
+        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+        The Mile High City is low on oxygen but high on team spirit.<br /> Join our
+        budding scene for casual games and competitive strategy!
+      </p>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-8 items-center">
+    <div class="flex-1 text-right flex flex-row justify-end">
+      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+        About Us
+      </h1>
+    </div>
+    <div class="flex-1">
+      <div class="max-w-md">
+        <p class="mb-2">
+          We're a new scene and our goal is to grow the local community. We want
+          to have fun learning this game together! Don't feel intimidated – new
+          and casual players are welcome and encouraged to join. We don't charge
+          money and we are happy to teach you how to play.
+        </p>
+        <p class="mb-2">Start chatting with us today on Discord!</p>
+        <div class="inline-block mt-4 transition-all hover:-translate-y-1">
+          <a
+            href="https://discord.gg/bXyA8sbYk4"
+            target="_blank"
+            class="bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg"
+            >Join our Discord</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-8 items-center">
+    <div class="flex-1">
+      <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
+      <p
+        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+      </p>
+    </div>
+    <div class="flex-1">
+      <div class="max-w-lg">
+        <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          Upcoming Events
+        </h1>
+
+        <div class="grid grid-cols-4 gap-2 text-left mb-2">
+          <div class="font-bold">Date</div>
+          <div class="font-bold">Time</div>
+          <div class="font-bold">Event</div>
+          <div class="font-bold">Location</div>
+
+          <div>Sun Dec 1</div>
+          <div>2-5pm</div>
+          <div>Casual Freeplay</div>
+          <div>FlyteCo Tower</div>
+
+          <div>Sun Dec 8</div>
+          <div>2-5pm</div>
+          <div>Casual Freeplay</div>
+          <div>FlyteCo Tower</div>
+
+          <div>Sun Jan 5, 2025</div>
+          <div>2-5pm</div>
+          <div>Casual Freeplay</div>
+          <div>FlyteCo Tower</div>
+
+          <div>Sun Jan 12, 2025</div>
+          <div>2-5pm</div>
+          <div>Casual Freeplay</div>
+          <div>FlyteCo Tower</div>
+        </div>
+
+        <div class="inline-block mt-4 transition-all hover:-translate-y-1">
+          <a
+            href="#"
+            class="bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg"
+            >Add to Google Calendar</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-8 items-center">
+    <div class="flex-1 text-right flex flex-row justify-end">
+      <div class="max-w-md">
+        <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          Location
+        </h1>
+        <p class="mb-2">
+          <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
+            📍 <span class="text-sky-300 underline">
+              FlyteCo Tower<br />
+              3120 Uinta St, Denver, CO 80238
+            </span>
+          </a>
+        </p>
+        <p class="mb-2">
+          <a
+            href="https://flytecotower.com/"
+            target="_blank"
+            class="text-sky-300 underline">FlyteCo Tower</a
+          >
+          is a family-friendly brewery, restaurant, and arcade. Take advantage of
+          the convenient online ordering system and have food and drinks delivered
+          right to you at the cabinet.
+        </p>
+        <p class="mb-2">
+          The KQ cabinet is located on the second floor. Take a right after you
+          walk in, then go up the stairs.
+        </p>
+        <div class="inline-block mt-4 transition-all hover:-translate-y-1">
+          <a
+            href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
+            target="_blank"
+            class="bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg"
+            >Get directions</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flex-1">
+      <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
+      <p
+        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+      </p>
+    </div>
+  </section>
+</MainLayout>
