@@ -3,11 +3,20 @@ import { Image } from "astro:assets";
 import MainLayout from "../layouts/MainLayout.astro";
 import ArcadeCab from "../images/arcade-cab.jpg";
 import CabWithPlayers from "../images/cab-with-players.jpg";
+
+const blackOverlayClass = "absolute inset-0 w-full h-full bg-black opacity-50";
+const sectionClass =
+  "flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-16 items-center";
+const textClass =
+  "text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose";
+const headingClass = "text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]";
+const buttonClass =
+  "bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg";
+const transitionClass = "mt-8 transition-all hover:-translate-y-1";
 ---
 
 <MainLayout>
-  <section
-    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-16 lg:py-36 items-center">
+  <section class={sectionClass + " lg:py-36"}>
     <div class="absolute inset-0 w-full h-full">
       <video
         autoplay
@@ -20,73 +29,62 @@ import CabWithPlayers from "../images/cab-with-players.jpg";
         />
         <!-- Browser does not support the video tag -->
       </video>
-      <div class="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+      <div class={blackOverlayClass}></div>
     </div>
     <div class="flex-1 relative z-1">
-      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+      <h1 class={headingClass}>
         Our community plays the world's only 5v5 arcade game.
       </h1>
     </div>
     <div class="flex-1 relative z-1">
-      <p
-        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+      <p class={textClass}>
         Killer Queen pits your team of five players against another team
         standing three feet away from you. Bring berries to your Hive, stab the
         enemy Queen, and ride the snail to victory!
       </p>
-      <div class="mt-8 transition-all hover:-translate-y-1">
-        <a
-          href="/scenes/denver"
-          class="bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg">
+      <div class={transitionClass}>
+        <a href="/scenes/denver" class={buttonClass}>
           Find your local scene &raquo;
         </a>
       </div>
     </div>
   </section>
 
-  <section
-    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-16 items-center">
+  <section class={sectionClass}>
     <div class="absolute inset-0 w-full h-full">
       <Image
         src={ArcadeCab}
         alt="Killer Queen arcade cabinets in an arcade"
         class="absolute inset-0 w-full h-full object-cover"
       />
-      <div class="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+      <div class={blackOverlayClass}></div>
     </div>
     <div class="flex-1 relative z-1 flex items-center">
-      <p
-        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+      <p class={textClass}>
         With movement inspired by classic platformers, combat inspired by Joust,
         and cooperative team strategy built on the shoulders of modern
         competitive games, Killer Queen has something for every player.
       </p>
     </div>
     <div class="flex-1 relative z-1 flex items-center">
-      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-        Retro graphics, meet modern team tactics.
-      </h1>
+      <h1 class={headingClass}>Retro graphics, meet modern team tactics.</h1>
     </div>
   </section>
 
-  <section
-    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-16 items-center">
+  <section class={sectionClass}>
     <div class="absolute inset-0 w-full h-full">
       <Image
         src={CabWithPlayers}
         alt="Killer Queen arcade cabinets with players"
         class="absolute inset-0 w-full h-full object-cover"
       />
-      <div class="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+      <div class={blackOverlayClass}></div>
     </div>
     <div class="flex-1 relative z-1 flex items-center">
-      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-        We're building a community together
-      </h1>
+      <h1 class={headingClass}>We're building a community together</h1>
     </div>
     <div class="flex-1 relative z-1 flex items-center">
-      <p
-        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+      <p class={textClass}>
         Every game is played in person and in real time. Our local scenes are
         growing every day and we welcome new players. We organize national
         events and fly around the country to play each other. We're excited to
@@ -98,10 +96,8 @@ import CabWithPlayers from "../images/cab-with-players.jpg";
   <section class="container mx-auto text-center py-12">
     <div>
       <h1 class="text-6xl">Ready to play a game?</h1>
-      <div class="mt-8 transition-all hover:-translate-y-1">
-        <a
-          href="/scenes/denver"
-          class="bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg">
+      <div class={transitionClass}>
+        <a href="/scenes/denver" class={buttonClass}>
           Find your local scene &raquo;
         </a>
       </div>
