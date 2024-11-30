@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/navbar.astro";
+import Footer from "../components/footer.astro";
 import "../styles/root.css";
 ---
 
@@ -9,12 +10,13 @@ import "../styles/root.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>KQ Community</title>
   </head>
   <body class="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100">
     <Navbar />
     <div>
       <slot />
     </div>
+    <Footer />
   </body>
 </html>
