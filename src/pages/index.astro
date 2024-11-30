@@ -1,16 +1,36 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <section
+    class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-16 items-center">
+    <div class="absolute inset-0 w-full h-full">
+      <video
+        autoplay
+        loop
+        muted
+        class="absolute inset-0 w-full h-full object-cover">
+        <source
+          src="/assets/videos/kq-news-interview-m02KoWDk1oI.mp4"
+          type="video/mp4"
+        />
+        <!-- Browser does not support the video tag -->
+      </video>
+      <div class="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+    </div>
+    <div class="flex-1 relative z-1 flex items-center">
+      <h1 class="text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+        The world's only 10-player strategy arcade game.
+      </h1>
+    </div>
+    <div class="flex-1 relative z-1 flex items-center">
+      <p
+        class="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose">
+        Killer Queen pits your team of five players against another team
+        standing three feet away from you. Capture berries, stab the enemy
+        Queen, or ride the snail to victory!
+      </p>
+    </div>
+  </section>
+</MainLayout>
