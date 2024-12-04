@@ -1,0 +1,32 @@
+---
+import classNames from "classnames";
+
+interface Props {
+  text: string;
+  href: string;
+}
+
+const containerClass = classNames(
+  "inline-block",
+  "mt-4",
+  "transition-all",
+  "hover:-translate-y-1"
+);
+
+const buttonClass = classNames(
+  "bg-purple-600",
+  "hover:bg-purple-500",
+  "transition-all",
+  "text-white",
+  "px-6",
+  "py-3",
+  "rounded-full",
+  "drop-shadow-lg"
+);
+
+const { text, href } = Astro.props;
+---
+
+<div class={containerClass}>
+  <a href={href} target="_blank" class={buttonClass}>{text}</a>
+</div>

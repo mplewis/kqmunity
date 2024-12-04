@@ -4,16 +4,11 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import DenverSkyline from "../../images/denver-skyline.webp";
 import FlytecoTower from "../../images/flyteco-tower.png";
 import CabWithPlayers from "../../images/cab-with-players.jpg";
+import Section from "../../components/section.astro";
+import Button from "../../components/button.astro";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full opacity-60";
-const sectionClass =
-  "flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-12 py-8 items-center";
 const textClass = "text-2xl leading-loose";
-const headingClass =
-  "text-8xl dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-slate-700 dark:text-white";
-const buttonClass =
-  "bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg";
-const transitionClass = "inline-block mt-4 transition-all hover:-translate-y-1";
 ---
 
 <MainLayout>
@@ -39,111 +34,126 @@ const transitionClass = "inline-block mt-4 transition-all hover:-translate-y-1";
     </div>
   </section>
 
-  <section class={sectionClass}>
-    <div class="flex-1 text-right flex flex-row justify-end">
-      <h1 class={headingClass}>About Us</h1>
+  <Section title="About Us">
+    <div class="max-w-md">
+      <p class="mb-2">
+        We're a new scene and our goal is to grow the local community. We want
+        to have fun learning this game together! Don't feel intimidated – new
+        and casual players are welcome and encouraged to join. We don't charge
+        money and we are happy to teach you how to play.
+      </p>
+      <p class="mb-2">Start chatting with us today on Discord!</p>
+      <Button text="Join our Discord" href="https://discord.gg/bXyA8sbYk4" />
     </div>
-    <div class="flex-1">
-      <div class="max-w-md">
-        <p class="mb-2">
-          We're a new scene and our goal is to grow the local community. We want
-          to have fun learning this game together! Don't feel intimidated – new
-          and casual players are welcome and encouraged to join. We don't charge
-          money and we are happy to teach you how to play.
-        </p>
-        <p class="mb-2">Start chatting with us today on Discord!</p>
-        <div class={transitionClass}>
-          <a
-            href="https://discord.gg/bXyA8sbYk4"
-            target="_blank"
-            class={buttonClass}>Join our Discord</a
-          >
-        </div>
+  </Section>
+
+  <Section title="Upcoming Events" titleSide="right">
+    <div slot="title">
+      <div class="grid grid-cols-4 gap-2 text-left mb-2">
+        <div class="font-bold">Date</div>
+        <div class="font-bold">Time</div>
+        <div class="font-bold">Event</div>
+        <div class="font-bold">Location</div>
+
+        <div>Sun Dec 1</div>
+        <div>2-5pm</div>
+        <div>Casual Freeplay</div>
+        <div>FlyteCo Tower</div>
+
+        <div>Sun Dec 8</div>
+        <div>2-5pm</div>
+        <div>Casual Freeplay</div>
+        <div>FlyteCo Tower</div>
+
+        <div>Sun Jan 5, 2025</div>
+        <div>2-5pm</div>
+        <div>Casual Freeplay</div>
+        <div>FlyteCo Tower</div>
+
+        <div>Sun Jan 12, 2025</div>
+        <div>2-5pm</div>
+        <div>Casual Freeplay</div>
+        <div>FlyteCo Tower</div>
       </div>
+      <Button href="#" text="Add to Google Calendar" />
     </div>
-  </section>
 
-  <section class={sectionClass}>
-    <div class="flex-1">
-      <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
-      <p class={textClass}></p>
-    </div>
-    <div class="flex-1">
-      <div class="max-w-lg">
-        <h1 class={headingClass}>Upcoming Events</h1>
+    <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
+  </Section>
 
-        <div class="grid grid-cols-4 gap-2 text-left mb-2">
-          <div class="font-bold">Date</div>
-          <div class="font-bold">Time</div>
-          <div class="font-bold">Event</div>
-          <div class="font-bold">Location</div>
-
-          <div>Sun Dec 1</div>
-          <div>2-5pm</div>
-          <div>Casual Freeplay</div>
-          <div>FlyteCo Tower</div>
-
-          <div>Sun Dec 8</div>
-          <div>2-5pm</div>
-          <div>Casual Freeplay</div>
-          <div>FlyteCo Tower</div>
-
-          <div>Sun Jan 5, 2025</div>
-          <div>2-5pm</div>
-          <div>Casual Freeplay</div>
-          <div>FlyteCo Tower</div>
-
-          <div>Sun Jan 12, 2025</div>
-          <div>2-5pm</div>
-          <div>Casual Freeplay</div>
-          <div>FlyteCo Tower</div>
-        </div>
-
-        <div class={transitionClass}>
-          <a href="#" class={buttonClass}>Add to Google Calendar</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class={sectionClass}>
-    <div class="flex-1 text-right flex flex-row justify-end">
-      <div class="max-w-md">
-        <h1 class={headingClass}>Location</h1>
-        <p class="mb-2">
-          <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
-            📍 <span class="text-sky-300 underline">
-              FlyteCo Tower<br />
-              3120 Uinta St, Denver, CO 80238
-            </span>
-          </a>
-        </p>
-        <p class="mb-2">
-          <a
-            href="https://flytecotower.com/"
-            target="_blank"
-            class="text-sky-300 underline">FlyteCo Tower</a
-          >
-          is a family-friendly brewery, restaurant, and arcade. Take advantage of
-          the convenient online ordering system and have food and drinks delivered
-          right to you at the cabinet.
-        </p>
-        <p class="mb-2">
-          The KQ cabinet is located on the second floor. Take a right after you
-          walk in, then go up the stairs.
-        </p>
-        <div class={transitionClass}>
-          <a
-            href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
-            target="_blank"
-            class={buttonClass}>Get directions</a
-          >
-        </div>
-      </div>
+  <Section title="Location">
+    <div slot="title">
+      <p class="mb-2">
+        <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
+          📍{" "}
+          <span class="text-sky-300 underline">
+            FlyteCo Tower
+            <br />
+            3120 Uinta St, Denver, CO 80238
+          </span>
+        </a>
+      </p>
+      <p class="mb-2">
+        <a
+          href="https://flytecotower.com/"
+          target="_blank"
+          class="text-sky-300 underline">
+          FlyteCo Tower
+        </a>
+        is a family-friendly brewery, restaurant, and arcade. Take advantage of the
+        convenient online ordering system and have food and drinks delivered right
+        to you at the cabinet.
+      </p>
+      <p class="mb-2">
+        The KQ cabinet is located on the second floor. Take a right after you
+        walk in, then go up the stairs.
+      </p>
+      <Button
+        href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
+        text="Get directions"
+      />
     </div>
     <div class="flex-1">
       <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
       <p class={textClass}></p>
     </div>
-  </section>
+  </Section>
+
+  <Section title="Location" titleSide="right">
+    <div slot="title">
+      <p class="mb-2">
+        <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
+          📍{" "}
+          <span class="text-sky-300 underline">
+            FlyteCo Tower
+            <br />
+            3120 Uinta St, Denver, CO 80238
+          </span>
+        </a>
+      </p>
+      <p class="mb-2">
+        <a
+          href="https://flytecotower.com/"
+          target="_blank"
+          class="text-sky-300 underline">
+          FlyteCo Tower
+        </a>
+        is a family-friendly brewery, restaurant, and arcade. Take advantage of the
+        convenient online ordering system and have food and drinks delivered right
+        to you at the cabinet.
+      </p>
+      <p class="mb-2">
+        The KQ cabinet is located on the second floor. Take a right after you
+        walk in, then go up the stairs.
+      </p>
+      <Button
+        href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
+        text="Get directions"
+      />
+    </div>
+    <div>
+      <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
+      <p class={textClass}></p>
+    </div>
+  </Section>
 </MainLayout>
