@@ -35,7 +35,7 @@ const textClass = "text-2xl leading-loose";
   </section>
 
   <Section title="About Us">
-    <div class="max-w-md">
+    <div class="lg:max-w-lg">
       <p class="mb-2">
         We're a new scene and our goal is to grow the local community. We want
         to have fun learning this game together! Don't feel intimidated – new
@@ -65,12 +65,12 @@ const textClass = "text-2xl leading-loose";
         <div>Casual Freeplay</div>
         <div>FlyteCo Tower</div>
 
-        <div>Sun Jan 5, 2025</div>
+        <div>Sun Jan 5</div>
         <div>2-5pm</div>
         <div>Casual Freeplay</div>
         <div>FlyteCo Tower</div>
 
-        <div>Sun Jan 12, 2025</div>
+        <div>Sun Jan 12</div>
         <div>2-5pm</div>
         <div>Casual Freeplay</div>
         <div>FlyteCo Tower</div>
@@ -82,10 +82,10 @@ const textClass = "text-2xl leading-loose";
   </Section>
 
   <Section title="Location">
-    <div slot="title">
+    <div slot="title" class="lg:max-w-lg">
       <p class="mb-2">
         <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
-          📍{" "}
+          📍
           <span class="text-sky-300 underline">
             FlyteCo Tower
             <br />
@@ -97,9 +97,8 @@ const textClass = "text-2xl leading-loose";
         <a
           href="https://flytecotower.com/"
           target="_blank"
-          class="text-sky-300 underline">
-          FlyteCo Tower
-        </a>
+          class="text-sky-300 underline">FlyteCo Tower</a
+        >
         is a family-friendly brewery, restaurant, and arcade. Take advantage of the
         convenient online ordering system and have food and drinks delivered right
         to you at the cabinet.
@@ -114,44 +113,6 @@ const textClass = "text-2xl leading-loose";
       />
     </div>
     <div class="flex-1">
-      <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
-      <p class={textClass}></p>
-    </div>
-  </Section>
-
-  <Section title="Location" titleSide="right">
-    <div slot="title">
-      <p class="mb-2">
-        <a href="https://maps.app.goo.gl/VpD5YowCzYTW4D4V6" target="_blank">
-          📍{" "}
-          <span class="text-sky-300 underline">
-            FlyteCo Tower
-            <br />
-            3120 Uinta St, Denver, CO 80238
-          </span>
-        </a>
-      </p>
-      <p class="mb-2">
-        <a
-          href="https://flytecotower.com/"
-          target="_blank"
-          class="text-sky-300 underline">
-          FlyteCo Tower
-        </a>
-        is a family-friendly brewery, restaurant, and arcade. Take advantage of the
-        convenient online ordering system and have food and drinks delivered right
-        to you at the cabinet.
-      </p>
-      <p class="mb-2">
-        The KQ cabinet is located on the second floor. Take a right after you
-        walk in, then go up the stairs.
-      </p>
-      <Button
-        href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
-        text="Get directions"
-      />
-    </div>
-    <div>
       <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
       <p class={textClass}></p>
     </div>
