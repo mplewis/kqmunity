@@ -8,7 +8,7 @@ const handler = schedule("@hourly", async () => {
   }
 
   const resp = await fetch(BUILD_HOOK, { method: "POST" });
-  const data = await resp.json();
+  const data = await resp.text();
   console.log({ status: resp.status, data });
   return { statusCode: resp.status };
 });
