@@ -1,14 +1,7 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits, Guild } from "discord.js";
 import type { Context } from "@netlify/functions";
-
-type Event = {
-  guildID: string;
-  name: string;
-  desc: string;
-  start: string; // ISO date
-  location: string;
-};
+import type { Event } from "../../src/site/logic/events";
 
 function mustEnv(key: string): string {
   const value = process.env[key];

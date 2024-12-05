@@ -6,6 +6,8 @@ import FlytecoTower from "../../images/flyteco-tower.png";
 import CabWithPlayers from "../../images/cab-with-players.jpg";
 import Section from "../../components/Section.astro";
 import Button from "../../components/Button.astro";
+import { EventsTable } from "../../components/EventsTable";
+import { guilds } from "../../data/guilds";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full opacity-60";
 const textClass = "text-2xl leading-loose";
@@ -49,33 +51,7 @@ const textClass = "text-2xl leading-loose";
 
   <Section title="Upcoming Events" titleSide="right">
     <div slot="title">
-      <div class="grid grid-cols-4 gap-2 text-left mb-2">
-        <div class="font-bold">Date</div>
-        <div class="font-bold">Time</div>
-        <div class="font-bold">Event</div>
-        <div class="font-bold">Location</div>
-
-        <div>Sun Dec 1</div>
-        <div>2-5pm</div>
-        <div>Casual Freeplay</div>
-        <div>FlyteCo Tower</div>
-
-        <div>Sun Dec 8</div>
-        <div>2-5pm</div>
-        <div>Casual Freeplay</div>
-        <div>FlyteCo Tower</div>
-
-        <div>Sun Jan 5</div>
-        <div>2-5pm</div>
-        <div>Casual Freeplay</div>
-        <div>FlyteCo Tower</div>
-
-        <div>Sun Jan 12</div>
-        <div>2-5pm</div>
-        <div>Casual Freeplay</div>
-        <div>FlyteCo Tower</div>
-      </div>
-      <Button href="#" text="Add to Google Calendar" />
+      <EventsTable client:visible guildID={guilds.KQ_DEN} />
     </div>
 
     <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
