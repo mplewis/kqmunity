@@ -51,7 +51,7 @@ const textClass = "text-2xl leading-loose";
 
   <Section title="Upcoming Events" titleSide="right">
     <div slot="title">
-      <EventsTable client:visible guildID={guilds.KQ_DEN} />
+      <EventsTable client:only guildID={guilds.KQ_DEN} />
     </div>
 
     <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
