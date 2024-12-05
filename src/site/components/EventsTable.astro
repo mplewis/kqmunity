@@ -1,21 +1,23 @@
 ---
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import {
   getScheduledEventsForGuild,
   type DiscordEvent,
 } from "../logic/discord";
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
 
 interface Props {
-  guildID: string;
+  guild: { id: string; timezone: string };
 }
 
-const { guildID } = Astro.props;
-const events = await getScheduledEventsForGuild(guildID);
+const { guild } = Astro.props;
+const events = await getScheduledEventsForGuild(guild.id);
 
 function toGcalDate(date: string) {
   return dayjs(date).utc().format(GCAL_DATE_FORMAT);
@@ -40,6 +42,12 @@ function gcalLink(event: DiscordEvent) {
   };
   return `https://calendar.google.com/calendar/r/eventedit?${queryString(data)}`;
 }
+
+function formatDate(event: DiscordEvent) {
+  const start = dayjs(event.start).tz(guild.timezone);
+  const end = dayjs(event.end).tz(guild.timezone);
+  return `${start.format("ddd MMM D")} ${start.format("ha")}-${end.format("ha")}`;
+}
 ---
 
 {
@@ -61,8 +69,7 @@ function gcalLink(event: DiscordEvent) {
               title="Add to Google Calendar">
               📆
             </a>{" "}
-            {dayjs(event.start).format("ddd MMM D")}{" "}
-            {dayjs(event.start).format("ha")}-{dayjs(event.end).format("ha")}
+            {formatDate(event)}
           </div>
           <div>{event.name}</div>
           <div>{event.location}</div>
