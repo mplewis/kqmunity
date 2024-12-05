@@ -3,13 +3,16 @@ import { z } from "zod";
 const NETLIFY_FUNCTIONS_PATH = "/.netlify/functions";
 const EVENTS_ENDPOINT = `${NETLIFY_FUNCTIONS_PATH}/events`;
 
+const dateString = z.string().refine((val) => !isNaN(Date.parse(val)), {
+  message: "Invalid date format",
+});
+
 export const eventSchema = z.object({
   guildID: z.string(),
   name: z.string(),
   desc: z.string(),
-  start: z.string().refine((val) => !isNaN(Date.parse(val)), {
-    message: "Invalid date format",
-  }),
+  start: dateString,
+  end: dateString,
   location: z.string(),
 });
 

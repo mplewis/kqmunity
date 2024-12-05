@@ -37,8 +37,9 @@ async function getScheduledEvents(guild: Guild) {
         name: event.name,
         desc: event.description ?? "",
         start: event.scheduledStartAt.toISOString(),
+        end: (event.scheduledEndAt ?? event.scheduledStartAt).toISOString(),
         location: event.entityMetadata?.location ?? "",
-      } as Event;
+      };
     })
     .filter((e) => e !== null);
 }
