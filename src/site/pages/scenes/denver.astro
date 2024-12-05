@@ -6,7 +6,7 @@ import FlytecoTower from "../../images/flyteco-tower.png";
 import CabWithPlayers from "../../images/cab-with-players.jpg";
 import Section from "../../components/Section.astro";
 import Button from "../../components/Button.astro";
-import { EventsTable } from "../../components/EventsTable";
+import EventsTable from "../../components/EventsTable.astro";
 import { guilds } from "../../data/guilds";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full opacity-60";
@@ -51,7 +51,7 @@ const textClass = "text-2xl leading-loose";
 
   <Section title="Upcoming Events" titleSide="right">
     <div slot="title">
-      <EventsTable client:only guildID={guilds.KQ_DEN} />
+      <EventsTable guildID={guilds.KQ_DEN} />
     </div>
 
     <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />

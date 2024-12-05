@@ -1,0 +1,74 @@
+---
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import {
+  getScheduledEventsForGuild,
+  type DiscordEvent,
+} from "../logic/discord";
+
+dayjs.extend(utc);
+
+const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
+
+interface Props {
+  guildID: string;
+}
+
+const { guildID } = Astro.props;
+const events = await getScheduledEventsForGuild(guildID);
+
+function toGcalDate(date: string) {
+  return dayjs(date).utc().format(GCAL_DATE_FORMAT);
+}
+
+function queryString(params: Record<string, string>) {
+  return Object.entries(params)
+    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+    .join("&");
+}
+
+function gcalLink(event: DiscordEvent) {
+  const { name, desc, start, end, location } = event;
+  const dates = end
+    ? `${toGcalDate(start.toISOString())}/${toGcalDate(end.toISOString())}`
+    : toGcalDate(start.toISOString());
+  const data = {
+    dates,
+    text: name,
+    details: desc ?? "",
+    location: location ?? "",
+  };
+  return `https://calendar.google.com/calendar/r/eventedit?${queryString(data)}`;
+}
+---
+
+{
+  events.length === 0 ? (
+    "No events scheduled. Join our community and organize one!"
+  ) : (
+    <div class="grid grid-cols-4 auto-cols-max gap-2 text-left mb-2">
+      <div class="font-bold">When</div>
+      <div class="font-bold">Event</div>
+      <div class="font-bold">Location</div>
+      <div class="font-bold">Info</div>
+
+      {events.map((event) => (
+        <>
+          <div>
+            <a
+              href={gcalLink(event)}
+              target="_blank"
+              title="Add to Google Calendar">
+              📆
+            </a>{" "}
+            {dayjs(event.start).format("ddd MMM D")}{" "}
+            {dayjs(event.start).format("ha")}-{dayjs(event.end).format("ha")}
+          </div>
+          <div>{event.name}</div>
+          <div>{event.location}</div>
+          <div>{event.desc}</div>
+        </>
+      ))}
+    </div>
+  )
+}
