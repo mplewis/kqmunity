@@ -4,13 +4,22 @@ import classNames from "classnames";
 interface Props {
   text: string;
   href: string;
+  size?: "md" | "sm";
+  classname?: string;
 }
+
+const defaults = {
+  size: "md",
+};
+
+const { text, href, size, classname } = { ...defaults, ...Astro.props };
 
 const containerClass = classNames(
   "inline-block",
   "my-2",
   "transition-all",
-  "hover:-translate-y-1"
+  "hover:-translate-y-1",
+  classname
 );
 
 const buttonClass = classNames(
@@ -19,13 +28,13 @@ const buttonClass = classNames(
   "hover:bg-purple-500",
   "transition-all",
   "text-white",
-  "px-6",
-  "py-3",
   "rounded-full",
-  "drop-shadow-lg"
+  "drop-shadow-lg",
+  { "px-6": size === "md" },
+  { "px-4": size === "sm" },
+  { "py-3": size === "md" },
+  { "py-1": size === "sm" }
 );
-
-const { text, href } = Astro.props;
 ---
 
 <div class={containerClass}>
