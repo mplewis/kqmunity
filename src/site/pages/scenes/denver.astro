@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
 import DenverSkyline from "../../images/denver-skyline.webp";
 import FlytecoTower from "../../images/flyteco-tower.png";
-import CabWithPlayers from "../../images/cab-with-players.jpg";
+import BlueTeamPlayers from "../../images/blue-team-players.jpg";
 import Section from "../../components/Section.astro";
 import Button from "../../components/Button.astro";
 import EventsTable from "../../components/EventsTable.astro";
@@ -14,7 +14,8 @@ const textClass = "text-2xl leading-loose";
 ---
 
 <MainLayout>
-  <section class="relative px-12 py-16 text-center text-white bg-black">
+  <section
+    class="relative px-6 lg:px-12 py-8 lg:py-16 text-center text-white bg-black">
     <div class={blackOverlayClass}>
       <Image
         src={DenverSkyline}
@@ -24,7 +25,7 @@ const textClass = "text-2xl leading-loose";
     </div>
     <div class="flex-1 relative z-1">
       <h1
-        class="text-8xl dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-white">
+        class="text-7xl lg:text-8xl dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-white">
         Killer Queen Denver
       </h1>
     </div>
@@ -54,7 +55,7 @@ const textClass = "text-2xl leading-loose";
       <EventsTable guild={guilds.KQ_DEN} />
     </div>
 
-    <Image src={CabWithPlayers} alt="Killer Queen cabinet with players" />
+    <Image src={BlueTeamPlayers} alt="Killer Queen cabinet with players" />
   </Section>
 
   <Section title="Location">
