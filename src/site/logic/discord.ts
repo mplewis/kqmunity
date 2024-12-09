@@ -42,6 +42,9 @@ async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
   const events = await guild.scheduledEvents.fetch();
   return events
     .map((event) => {
+      // TODO: Implement recurrence rules:
+      // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-recurrence-rule-object
+      // Released in future Discord.js 14.17: https://github.com/discordjs/discord.js/pull/10447
       const result = z
         .object({
           guild: z.object({ id: z.string() }),
