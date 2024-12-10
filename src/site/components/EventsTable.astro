@@ -14,11 +14,11 @@ dayjs.extend(timezone);
 const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
 
 interface Props {
-  guild: { id: string; timezone: string };
+  guild: { guildID: string; timezone: string };
 }
 
 const { guild } = Astro.props;
-const events = await getScheduledEventsForGuild(guild.id);
+const events = await getScheduledEventsForGuild(guild.guildID);
 
 function toGcalDate(date: string) {
   return dayjs(date).utc().format(GCAL_DATE_FORMAT);
@@ -66,14 +66,16 @@ function formatDate(event: DiscordEvent) {
             </summary>
             <div class="px-4 pb-2">
               {event.desc}
-              <div class="mt-1">
+              <div class="mt-4">
                 <Button
+                  newTab
                   size="sm"
                   text="Directions"
                   href={`https://www.google.com/maps/search/?api=1&query=${event.location}`}
                   classname="mr-2"
                 />
                 <Button
+                  newTab
                   size="sm"
                   text="Add to Google Calendar"
                   href={gcalLink(event)}

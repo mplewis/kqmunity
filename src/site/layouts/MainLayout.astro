@@ -2,6 +2,13 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/root.css";
+
+let { title } = Astro.props;
+if (title) {
+  title = `${title} | KQmunity`;
+} else {
+  title = "KQmunity";
+}
 ---
 
 <html lang="en">
@@ -13,7 +20,7 @@ import "../styles/root.css";
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>KQmunity</title>
+    <title>{title}</title>
   </head>
   <body class="bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100">
     <Navbar />

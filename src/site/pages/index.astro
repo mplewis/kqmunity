@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import MainLayout from "../layouts/MainLayout.astro";
 import ArcadeCab from "../images/arcade-cab.jpg";
 import CabWithPlayers from "../images/blue-team-players.jpg";
+import Button from "../components/Button.astro";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full bg-black opacity-50";
 const sectionClass =
@@ -10,8 +11,6 @@ const sectionClass =
 const textClass =
   "text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] leading-loose";
 const headingClass = "text-8xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]";
-const buttonClass =
-  "bg-purple-600 hover:bg-purple-500 transition-all text-white py-3 px-6 rounded-full drop-shadow-lg";
 const transitionClass = "mt-8 transition-all hover:-translate-y-1";
 ---
 
@@ -43,9 +42,7 @@ const transitionClass = "mt-8 transition-all hover:-translate-y-1";
         enemy Queen, and ride the snail to victory!
       </p>
       <div class={transitionClass}>
-        <a href="/scenes/denver" class={buttonClass}>
-          Find your local scene &raquo;
-        </a>
+        <Button href="/scenes" text="Find your local scene" />
       </div>
     </div>
   </section>
@@ -97,9 +94,7 @@ const transitionClass = "mt-8 transition-all hover:-translate-y-1";
     <div>
       <h1 class="text-6xl">Ready to play a game?</h1>
       <div class={transitionClass}>
-        <a href="/scenes/denver" class={buttonClass}>
-          Find your local scene &raquo;
-        </a>
+        <Button href="/scenes" text="Find your local scene" />
       </div>
     </div>
   </section>

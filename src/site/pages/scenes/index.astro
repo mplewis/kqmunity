@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+import { scenes } from "../../data/scenes";
+
+const sceneList = Object.entries(scenes)
+  .map(([key, scene]) => ({ ...scene, slug: key }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+// Generate optimized images for scene tile breakpoints
+
+const pixelDensity = 2; // Apple retina
+const imageWidthByMaxWidth = [
+  { maxWidth: 767, width: 576 * pixelDensity },
+  { maxWidth: 1023, width: 328 * pixelDensity },
+  { maxWidth: 1279, width: 288 * pixelDensity },
+  { maxWidth: 1535, width: 374 * pixelDensity },
+  { maxWidth: null, width: 459 * pixelDensity },
+];
+
+const widths = imageWidthByMaxWidth.map(({ width }) => width);
+const sizes = imageWidthByMaxWidth
+  .map(({ maxWidth, width }) =>
+    maxWidth ? `(max-width: ${maxWidth}px) ${width}px` : `${width}px`
+  )
+  .join(", ");
+---
+
+<MainLayout title="Local Scenes">
+  <div class="container mx-auto px-4">
+    <div class="max-w-screen-sm mx-auto">
+      <h1 class="text-center">Local Scenes</h1>
+      <p>
+        Killer Queen is played at physical arcade cabinets, so we gather in
+        person to play together. Our friendly local scenes are the lifeblood of
+        the KQ community, and we love introducing new players to the game.
+      </p>
+      <p>
+        Don't see a scene near you? Check the <a
+          href="https://www.killerqueenarcade.com/locations"
+          target="blank">official map of KQ cabinets</a
+        > and find one in your area, then grab some other newbees and a handful of
+        quarters. Time to talk to strangers!
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 select-none">
+      {
+        sceneList.map((scene) => (
+          <a
+            href={
+              scene.site.kind === "external"
+                ? scene.site.href
+                : `/scenes/${scene.slug}`
+            }
+            {...(scene.site.kind === "external" && { target: "_blank" })}
+            class="no-underline text-white hover:text-white">
+            <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
+              <Image
+                class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
+                src={scene.splash.image}
+                alt={scene.splash.alt}
+                widths={widths}
+                sizes={sizes}
+              />
+              <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
+              <div class="relative">
+                <div class="flex justify-center items-center h-20 md:h-40 text-center">
+                  <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                    {scene.name}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+
+      <a href="/about" class="no-underline text-white hover:text-white">
+        <div
+          class="relative rounded-lg p-4 hover:cursor-pointer group transition-all bg-slate-500 dark:bg-slate-700">
+          <div
+            class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg">
+          </div>
+          <div class="relative">
+            <div
+              class="flex justify-center items-center h-20 md:h-40 text-center">
+              <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                Your Scene Here
+              </h1>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</MainLayout>

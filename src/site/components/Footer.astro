@@ -1,18 +1,18 @@
 ---
-const textClass =
-  "text-slate-700 hover:text-slate-400 dark:text-slate-400 dark:hover:text-white transition-all";
+const linkClass =
+  "text-slate-700 hover:text-slate-400 dark:text-slate-400 dark:hover:text-white transition-all no-underline";
 ---
 
 <footer>
   <div
-    class="container mx-auto py-8 lg:pt-0 px-4 flex justify-between items-center h-16">
+    class="container mx-auto py-8 px-4 flex justify-between items-center h-16">
     <div class="flex items-center space-x-8 mx-auto">
-      <a href="#" class={textClass}>About Us</a>
-      <a href="mailto:hi@kqmunity.com" class={textClass}>Contact Us</a>
+      <a href="/about" class={linkClass}>About Us</a>
+      <a href="mailto:hi@kqmunity.com" class={linkClass}>Contact Us</a>
       <a
         href="https://www.killerqueenarcade.com/"
         target="_blank"
-        class={textClass}>KQ Official Site</a
+        class={linkClass}>KQ Official Site</a
       >
     </div>
   </div>

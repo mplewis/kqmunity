@@ -4,6 +4,7 @@ import classNames from "classnames";
 interface Props {
   text: string;
   href: string;
+  newTab?: boolean;
   size?: "md" | "sm";
   classname?: string;
 }
@@ -12,13 +13,13 @@ const defaults = {
   size: "md",
 };
 
-const { text, href, size, classname } = { ...defaults, ...Astro.props };
+const { text, href, size, classname, newTab } = { ...defaults, ...Astro.props };
 
 const containerClass = classNames(
   "inline-block",
-  "my-2",
   "transition-all",
   "hover:-translate-y-1",
+  "mb-4",
   classname
 );
 
@@ -28,15 +29,19 @@ const buttonClass = classNames(
   "hover:bg-purple-500",
   "transition-all",
   "text-white",
+  "hover:text-white",
   "rounded-full",
   "drop-shadow-lg",
+  "no-underline",
   { "px-6": size === "md" },
   { "px-4": size === "sm" },
   { "py-3": size === "md" },
   { "py-1": size === "sm" }
 );
+
+const target = newTab ? { target: "_blank" } : {};
 ---
 
 <div class={containerClass}>
-  <a href={href} target="_blank" class={buttonClass}>{text}</a>
+  <a href={href} class={buttonClass} {...target}>{text}</a>
 </div>
