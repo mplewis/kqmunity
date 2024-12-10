@@ -54,7 +54,7 @@ export const scenes = {
     },
     site: {
       kind: "external",
-      href: "https://www.facebook.com/groups/348252818671598",
+      href: "https://www.facebook.com/groups/551580141097284",
     },
   },
 
