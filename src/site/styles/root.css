@@ -34,4 +34,23 @@ h6 {
   a {
     @apply underline transition-all text-sky-600 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-600;
   }
+
+  h1 {
+    @apply text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply text-4xl lg:text-5xl;
+  }
+  h3 {
+    @apply text-3xl lg:text-4xl;
+  }
+  h4 {
+    @apply text-2xl lg:text-3xl;
+  }
+  h5 {
+    @apply text-xl lg:text-2xl;
+  }
+  h6 {
+    @apply text-lg lg:text-xl;
+  }
 }
