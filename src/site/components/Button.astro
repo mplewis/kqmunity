@@ -4,6 +4,7 @@ import classNames from "classnames";
 interface Props {
   text: string;
   href: string;
+  newTab?: boolean;
   size?: "md" | "sm";
   classname?: string;
 }
@@ -12,7 +13,7 @@ const defaults = {
   size: "md",
 };
 
-const { text, href, size, classname } = { ...defaults, ...Astro.props };
+const { text, href, size, classname, newTab } = { ...defaults, ...Astro.props };
 
 const containerClass = classNames(
   "inline-block",
@@ -37,8 +38,10 @@ const buttonClass = classNames(
   { "py-3": size === "md" },
   { "py-1": size === "sm" }
 );
+
+const target = newTab ? { target: "_blank" } : {};
 ---
 
 <div class={containerClass}>
-  <a href={href} target="_blank" class={buttonClass}>{text}</a>
+  <a href={href} class={buttonClass} {...target}>{text}</a>
 </div>

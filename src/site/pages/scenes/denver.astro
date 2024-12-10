@@ -7,7 +7,7 @@ import BlueTeamPlayers from "../../images/blue-team-players.jpg";
 import Section from "../../components/Section.astro";
 import Button from "../../components/Button.astro";
 import EventsTable from "../../components/EventsTable.astro";
-import { guilds } from "../../data/guilds";
+import { scenes } from "../../data/scenes";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full opacity-60";
 const textClass = "text-2xl leading-loose";
@@ -46,13 +46,17 @@ const textClass = "text-2xl leading-loose";
         money and we are happy to teach you how to play.
       </p>
       <p class="mb-2">Start chatting with us today on Discord!</p>
-      <Button text="Join our Discord" href="https://discord.gg/bXyA8sbYk4" />
+      <Button
+        newTab
+        text="Join our Discord"
+        href="https://discord.gg/bXyA8sbYk4"
+      />
     </div>
   </Section>
 
   <Section title="Upcoming Events" titleSide="right">
     <div slot="title">
-      <EventsTable guild={guilds.KQ_DEN} />
+      <EventsTable guild={scenes.denver.discord} />
     </div>
 
     <Image src={BlueTeamPlayers} alt="Killer Queen cabinet with players" />
@@ -78,6 +82,7 @@ const textClass = "text-2xl leading-loose";
         walk in, then go up the stairs.
       </p>
       <Button
+        newTab
         href="https://killerqueen.miraheze.org/wiki/Denver_Scene"
         text="Get directions"
       />
