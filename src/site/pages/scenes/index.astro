@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
+import DenverSkyline from "../../images/denver-skyline.webp";
 ---
 
-<MainLayout>
+<MainLayout title="Local Scenes">
   <div class="container mx-auto px-4">
     <div class="max-w-screen-sm mx-auto">
       <h1 class="text-5xl lg:text-6xl text-center">Local Scenes</h1>
@@ -18,6 +20,34 @@ import MainLayout from "../../layouts/MainLayout.astro";
         > and find one in your area, then grab some other newbees and a handful of
         quarters.
       </p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 py-4">
+      {
+        Array(9)
+          .fill(null)
+          .map(() => (
+            <a
+              href="/scenes/denver"
+              class="no-underline text-white hover:text-white">
+              <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
+                <Image
+                  src={DenverSkyline}
+                  class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
+                  alt="Denver Skyline"
+                />
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
+                <div class="relative">
+                  <div class="flex justify-center items-center h-40">
+                    <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                      Denver
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+      }
     </div>
   </div>
 </MainLayout>
