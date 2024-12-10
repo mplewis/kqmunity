@@ -2,6 +2,12 @@
 import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
 import DenverSkyline from "../../images/denver-skyline.webp";
+
+import { scenes } from "../../data/scenes";
+
+const sceneList = Object.entries(scenes)
+  .map(([key, scene]) => ({ ...scene, slug: key }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <MainLayout title="Local Scenes">
@@ -24,29 +30,27 @@ import DenverSkyline from "../../images/denver-skyline.webp";
 
     <div class="grid grid-cols-3 gap-4 py-4">
       {
-        Array(9)
-          .fill(null)
-          .map(() => (
-            <a
-              href="/scenes/denver"
-              class="no-underline text-white hover:text-white">
-              <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
-                <Image
-                  src={DenverSkyline}
-                  class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
-                  alt="Denver Skyline"
-                />
-                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
-                <div class="relative">
-                  <div class="flex justify-center items-center h-40">
-                    <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                      Denver
-                    </h1>
-                  </div>
+        sceneList.map((scene) => (
+          <a
+            href={`/scenes/${scene.slug}`}
+            class="no-underline text-white hover:text-white">
+            <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
+              <Image
+                src={scene.splash.image}
+                alt={scene.splash.alt}
+                class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
+              />
+              <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
+              <div class="relative">
+                <div class="flex justify-center items-center h-40">
+                  <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                    {scene.name}
+                  </h1>
                 </div>
               </div>
-            </a>
-          ))
+            </div>
+          </a>
+        ))
       }
     </div>
   </div>
