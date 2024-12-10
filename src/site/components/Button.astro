@@ -16,9 +16,9 @@ const { text, href, size, classname } = { ...defaults, ...Astro.props };
 
 const containerClass = classNames(
   "inline-block",
-  "my-2",
   "transition-all",
   "hover:-translate-y-1",
+  "mb-4",
   classname
 );
 
@@ -28,8 +28,10 @@ const buttonClass = classNames(
   "hover:bg-purple-500",
   "transition-all",
   "text-white",
+  "hover:text-white",
   "rounded-full",
   "drop-shadow-lg",
+  "no-underline",
   { "px-6": size === "md" },
   { "px-4": size === "sm" },
   { "py-3": size === "md" },

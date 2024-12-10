@@ -1,19 +1,19 @@
 ---
-const textClass =
-  "text-slate-700 hover:text-slate-400 dark:text-slate-400 dark:hover:text-white transition-all";
+const linkClass =
+  "text-slate-700 hover:text-slate-400 dark:text-slate-400 dark:hover:text-white transition-all no-underline";
 ---
 
 <nav>
   <div class="container mx-auto px-4 flex justify-between items-center h-16">
     <div class="flex space-x-4">
-      <a href="/" class={textClass}>KQmunity</a>
+      <a href="/" class={linkClass}>KQmunity</a>
     </div>
     <div class="flex space-x-4">
-      <a href="/scenes/denver" class={textClass}>Local Scenes</a>
+      <a href="/scenes" class={linkClass}>Local Scenes</a>
       <a
         href="https://killerqueen.miraheze.org"
         target="_blank"
-        class={textClass}>Wiki</a
+        class={linkClass}>Wiki</a
       >
     </div>
   </div>
