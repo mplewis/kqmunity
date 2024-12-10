@@ -7,6 +7,24 @@ import { scenes } from "../../data/scenes";
 const sceneList = Object.entries(scenes)
   .map(([key, scene]) => ({ ...scene, slug: key }))
   .sort((a, b) => a.name.localeCompare(b.name));
+
+// Generate optimized images for scene tile breakpoints
+
+const pixelDensity = 2; // Apple retina
+const imageWidthByMaxWidth = [
+  { maxWidth: 767, width: 576 * pixelDensity },
+  { maxWidth: 1023, width: 328 * pixelDensity },
+  { maxWidth: 1279, width: 288 * pixelDensity },
+  { maxWidth: 1535, width: 374 * pixelDensity },
+  { maxWidth: null, width: 459 * pixelDensity },
+];
+
+const widths = imageWidthByMaxWidth.map(({ width }) => width);
+const sizes = imageWidthByMaxWidth
+  .map(({ maxWidth, width }) =>
+    maxWidth ? `(max-width: ${maxWidth}px) ${width}px` : `${width}px`
+  )
+  .join(", ");
 ---
 
 <MainLayout title="Local Scenes">
@@ -41,9 +59,11 @@ const sceneList = Object.entries(scenes)
             class="no-underline text-white hover:text-white">
             <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
               <Image
+                class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
                 src={scene.splash.image}
                 alt={scene.splash.alt}
-                class="absolute inset-0 w-full h-full object-cover opacity-80 rounded-lg"
+                widths={widths}
+                sizes={sizes}
               />
               <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
               <div class="relative">
