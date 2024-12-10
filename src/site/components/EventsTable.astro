@@ -14,11 +14,11 @@ dayjs.extend(timezone);
 const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
 
 interface Props {
-  guild: { guild_id: string; timezone: string };
+  guild: { guildID: string; timezone: string };
 }
 
 const { guild } = Astro.props;
-const events = await getScheduledEventsForGuild(guild.guild_id);
+const events = await getScheduledEventsForGuild(guild.guildID);
 
 function toGcalDate(date: string) {
   return dayjs(date).utc().format(GCAL_DATE_FORMAT);
