@@ -11,6 +11,5 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   srcDir: "src/site",
   integrations: [react(), tailwind()],
-  output: "server",
   adapter: netlify(),
 });
