@@ -1,3 +1,8 @@
+# Scene Images
+
+Scene images were sourced from Wikimedia Commons and downsized using
+[jpegli](https://github.com/google/jpegli) at quality 3.0
+
 # Image Attribution
 
 - Baltimore: https://commons.wikimedia.org/wiki/File:Baltimore_Skyline_2.jpg
