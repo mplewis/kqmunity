@@ -27,7 +27,8 @@ const sceneList = Object.entries(scenes)
       </p>
     </div>
 
-    <div class="grid grid-cols-3 gap-4 py-4">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 select-none">
       {
         sceneList.map((scene) => (
           <a
@@ -46,7 +47,7 @@ const sceneList = Object.entries(scenes)
               />
               <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-lg" />
               <div class="relative">
-                <div class="flex justify-center items-center h-40">
+                <div class="flex justify-center items-center h-20 md:h-40 text-center">
                   <h1 class="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                     {scene.name}
                   </h1>

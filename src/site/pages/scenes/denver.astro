@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
-import DenverSkyline from "../../images/denver-skyline.webp";
+import DenverSkyline from "../../images/scenes/denver.jpg";
 import FlytecoTower from "../../images/flyteco-tower.png";
 import BlueTeamPlayers from "../../images/blue-team-players.jpg";
 import Section from "../../components/Section.astro";
@@ -62,7 +62,11 @@ const textClass = "text-2xl leading-loose";
         <EventsTable guild={scenes.denver.discord} />
       </div>
 
-      <Image src={BlueTeamPlayers} alt="Killer Queen cabinet with players" />
+      <Image
+        src={BlueTeamPlayers}
+        class="rounded-lg"
+        alt="Killer Queen cabinet with players"
+      />
     </Section>
 
     <Section title="Location">
@@ -91,7 +95,11 @@ const textClass = "text-2xl leading-loose";
         />
       </div>
       <div class="flex-1">
-        <Image src={FlytecoTower} alt="FlyteCo Tower in Denver" />
+        <Image
+          src={FlytecoTower}
+          alt="FlyteCo Tower in Denver"
+          class="rounded-lg"
+        />
         <p class={textClass}></p>
       </div>
     </Section>
