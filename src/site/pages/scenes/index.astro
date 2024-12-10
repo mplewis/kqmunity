@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
-import DenverSkyline from "../../images/denver-skyline.webp";
 
 import { scenes } from "../../data/scenes";
 
@@ -16,15 +15,15 @@ const sceneList = Object.entries(scenes)
       <h1 class="text-5xl lg:text-6xl text-center">Local Scenes</h1>
       <p>
         Killer Queen is played at physical arcade cabinets, so we gather in
-        person to play together. Our local scenes are the lifeblood of the KQ
-        community, and we love meeting new players. Time to talk to strangers!
+        person to play together. Our friendly local scenes are the lifeblood of
+        the KQ community, and we love introducing new players to the game.
       </p>
       <p>
         Don't see a scene near you? Check the <a
           href="https://www.killerqueenarcade.com/locations"
           target="blank">official map of KQ cabinets</a
         > and find one in your area, then grab some other newbees and a handful of
-        quarters.
+        quarters. Time to talk to strangers!
       </p>
     </div>
 
@@ -32,7 +31,12 @@ const sceneList = Object.entries(scenes)
       {
         sceneList.map((scene) => (
           <a
-            href={`/scenes/${scene.slug}`}
+            href={
+              scene.site.kind === "external"
+                ? scene.site.href
+                : `/scenes/${scene.slug}`
+            }
+            {...(scene.site.kind === "external" && { target: "_blank" })}
             class="no-underline text-white hover:text-white">
             <div class="relative rounded-lg p-4 bg-black hover:cursor-pointer group transition-all">
               <Image
