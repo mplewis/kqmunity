@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "netlify": "netlify"
+    "netlify": "netlify",
+    "test": "vitest"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "netlify-cli": "^17.38.0",
     "sharp": "^0.33.5",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "vitest": "^2.1.8"
   }
 }
