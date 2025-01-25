@@ -6,81 +6,87 @@ import CabWithPlayers from "../images/blue-team-players.jpg";
 import Button from "../components/Button.astro";
 
 const blackOverlayClass = "absolute inset-0 w-full h-full bg-black opacity-50";
+const bkgContClass = "absolute inset-0 w-full h-full";
+const bkgItemClass = "absolute inset-0 w-full h-full object-cover";
 const sectionClass =
-  "flex flex-col lg:flex-row space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-8 py-4 items-center text-white";
+  "space-y-12 lg:space-y-0 space-x-0 lg:space-x-12 relative px-8 py-4 lg:py-48";
+const flexContClass = "flex flex-col lg:flex-row";
+const flexItemClass = "flex-1 relative z-1";
 const shadowClass = "drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]";
-const transitionClass = "mt-8 transition-all hover:-translate-y-1";
+const transitionClass = "my-8 transition-all hover:-translate-y-1";
 ---
 
-<MainLayout>
-  <section class={sectionClass + " lg:py-36"}>
-    <div class="absolute inset-0 w-full h-full">
-      <video
-        autoplay
-        loop
-        muted
-        class="absolute inset-0 w-full h-full object-cover">
+<MainLayout class="text-white">
+  <section class={sectionClass}>
+    <div class={bkgContClass}>
+      <video autoplay loop muted class={bkgItemClass}>
         <source src="/assets/videos/sizzle1.mp4" type="video/mp4" />
       </video>
       <div class={blackOverlayClass}></div>
     </div>
-    <div class="flex-1 relative z-1">
-      <h1 class={shadowClass}>
-        Our community plays the world's only 5v5 arcade game.
-      </h1>
-    </div>
-    <div class="flex-1 relative z-1">
-      <p class={shadowClass}>
-        Killer Queen pits your team of five players against another team
-        standing three feet away from you. Bring berries to your Hive, stab the
-        enemy Queen, and ride the snail to victory!
-      </p>
-      <div class={transitionClass}>
-        <Button href="/scenes" text="Find your local scene" />
+    <div class={flexContClass}>
+      <div class={flexItemClass}>
+        <h1 class={shadowClass}>
+          Our community plays the world's only 5v5 arcade game.
+        </h1>
+      </div>
+      <div class={flexItemClass}>
+        <p class={shadowClass}>
+          Killer Queen pits your team of five players against another team
+          standing three feet away from you. Bring berries to your Hive, stab
+          the enemy Queen, and ride the snail to victory!
+        </p>
+        <div class={transitionClass}>
+          <Button href="/scenes" text="Find your local scene" />
+        </div>
       </div>
     </div>
   </section>
 
   <section class={sectionClass}>
-    <div class="absolute inset-0 w-full h-full">
+    <div class={bkgContClass}>
       <Image
         src={ArcadeCab}
         alt="Killer Queen arcade cabinets in an arcade"
-        class="absolute inset-0 w-full h-full object-cover"
+        class={bkgItemClass}
       />
       <div class={blackOverlayClass}></div>
     </div>
-    <div class="flex-1 relative z-1 flex items-center">
-      <p class={shadowClass}>
-        With movement inspired by classic platformers, combat inspired by Joust,
-        and cooperative team strategy built on the shoulders of modern
-        competitive games, Killer Queen has something for every player.
-      </p>
-    </div>
-    <div class="flex-1 relative z-1 flex items-center">
-      <h1 class={shadowClass}>Retro graphics, meet modern team tactics.</h1>
+    <div class={flexContClass}>
+      <div class={flexItemClass}>
+        <p class={shadowClass}>
+          With movement inspired by classic platformers, combat inspired by
+          Joust, and cooperative team strategy built on the shoulders of modern
+          competitive games, Killer Queen has something for every player.
+        </p>
+      </div>
+      <div class={flexItemClass}>
+        <h1 class={shadowClass}>Retro graphics, meet modern team tactics.</h1>
+      </div>
     </div>
   </section>
 
   <section class={sectionClass}>
-    <div class="absolute inset-0 w-full h-full">
+    <div class={bkgContClass}>
       <Image
         src={CabWithPlayers}
         alt="Killer Queen arcade cabinets with players"
-        class="absolute inset-0 w-full h-full object-cover"
+        class={bkgItemClass}
       />
       <div class={blackOverlayClass}></div>
     </div>
-    <div class="flex-1 relative z-1 flex items-center">
-      <h1 class={shadowClass}>We're building a community together</h1>
-    </div>
-    <div class="flex-1 relative z-1 flex items-center">
-      <p class={shadowClass}>
-        Every game is played in person and in real time. Our local scenes are
-        growing every day and we welcome new players. We organize national
-        events and fly around the country to play each other. We're excited to
-        teach you how to play!
-      </p>
+    <div class={flexContClass}>
+      <div class={flexItemClass}>
+        <h1 class={shadowClass}>We're building a community together</h1>
+      </div>
+      <div class={flexItemClass}>
+        <p class={shadowClass}>
+          Every game is played in person and in real time. Our local scenes are
+          growing every day and we welcome new players. We organize national
+          events and fly around the country to play each other. We're excited to
+          teach you how to play!
+        </p>
+      </div>
     </div>
   </section>
 
@@ -97,5 +103,8 @@ const transitionClass = "mt-8 transition-all hover:-translate-y-1";
 <style>
   p {
     @apply leading-loose;
+  }
+  h1 {
+    @apply mt-0;
   }
 </style>
