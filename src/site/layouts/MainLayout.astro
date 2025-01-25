@@ -4,11 +4,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/root.css";
 
 let { title } = Astro.props;
-if (title) {
-  title = `${title} | KQmunity`;
-} else {
-  title = "KQmunity";
-}
+const t = title ? `${title} | KQmunity` : "KQmunity";
 ---
 
 <html lang="en">
@@ -20,7 +16,14 @@ if (title) {
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <meta property="og:title" content={t} />
+    <meta
+      property="og:description"
+      content="The community for Killer Queen arcade game players"
+    />
+
+    <title>{t}</title>
   </head>
   <body class="bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100">
     <Navbar />
