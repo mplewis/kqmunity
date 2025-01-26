@@ -4,9 +4,10 @@ import classNames from "classnames";
 interface Props {
   title: string;
   titleSide?: "left" | "right";
+  alignItems?: "start" | "center" | "end" | "baseline" | "stretch";
 }
 
-const { title, titleSide = "left" } = Astro.props;
+const { title, titleSide = "left", alignItems = "start" } = Astro.props;
 
 const sectionClass = classNames(
   "relative",
@@ -18,7 +19,7 @@ const sectionClass = classNames(
   "lg:py-4",
 
   "flex-col",
-  "items-center",
+  `items-${alignItems}`,
 
   "lg:flex-row",
   "lg:space-x-12",
