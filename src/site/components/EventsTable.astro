@@ -2,98 +2,52 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import {
-  getScheduledEventsForGuild,
-  type DiscordEvent,
-} from "../logic/discord";
-import Button from "./Button.astro";
+import { getScheduledEventsForGuild } from "../logic/discord";
+import EventCell from "./EventCell.astro";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
-
 interface Props {
   guild: { guildID: string; timezone: string };
   maxEvents?: number;
+  showMoreAfter?: number;
 }
 
-const { guild, maxEvents = 3 } = Astro.props;
-const e = await getScheduledEventsForGuild(guild.guildID);
-const events = e.slice(0, maxEvents);
-
-function toGcalDate(date: string) {
-  return dayjs(date).utc().format(GCAL_DATE_FORMAT);
-}
-
-function queryString(params: Record<string, string>) {
-  return Object.entries(params)
-    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
-    .join("&");
-}
-
-function gcalLink(event: DiscordEvent) {
-  const { name, desc, start, end, location } = event;
-  const dates = end
-    ? `${toGcalDate(start.toISOString())}/${toGcalDate(end.toISOString())}`
-    : toGcalDate(start.toISOString());
-  const data = {
-    dates,
-    text: name,
-    details: desc ?? "",
-    location: location ?? "",
-  };
-  return `https://calendar.google.com/calendar/r/eventedit?${queryString(data)}`;
-}
-
-function formatDate(event: DiscordEvent) {
-  const start = dayjs(event.start).tz(guild.timezone);
-  const end = dayjs(event.end).tz(guild.timezone);
-  return `${start.format("ddd MMM D")} ${start.format("ha")}-${end.format("ha")}`;
-}
+const { guild, maxEvents = 8, showMoreAfter = 3 } = Astro.props;
+const e = (await getScheduledEventsForGuild(guild.guildID)).slice(0, maxEvents);
+const eventsBefore = e.slice(0, showMoreAfter);
+const eventsAfter = e.slice(showMoreAfter);
 ---
 
+<script>
+  document.querySelectorAll(".more-events-link").forEach((el) => {
+    el.addEventListener("click", () => {
+      document.querySelector(".more-events")?.classList.remove("hidden");
+      document.querySelector(".more-events-link")?.classList.add("hidden");
+    });
+  });
+</script>
+
 {
-  events.length === 0
+  eventsBefore.length === 0
     ? "No events scheduled. Join our community and organize one!"
-    : events.map((event) => (
-        <div class="my-4 border-slate-300 border-2 rounded-md">
-          <details>
-            <summary class="py-4 px-4 select-none hover:bg-slate-700 transition-all cursor-pointer">
-              <div class="flex justify-between gap-6">
-                <div class="font-bold">{event.name}</div>
-                <div>{formatDate(event)}</div>
-                <div>{event.location}</div>
-              </div>
-            </summary>
-            <div class="px-4 pt-2">
-              {event.desc}
-              <div class="mt-4">
-                <Button
-                  newTab
-                  size="sm"
-                  text="Directions"
-                  href={`https://www.google.com/maps/search/?api=1&query=${event.location}`}
-                  classname="mr-2"
-                />
-                <Button
-                  newTab
-                  size="sm"
-                  text="Add to Google Calendar"
-                  href={gcalLink(event)}
-                />
-              </div>
-            </div>
-          </details>
-        </div>
+    : eventsBefore.map((event) => (
+        <EventCell event={event} guildTZ={guild.timezone} />
       ))
 }
 
-<style>
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-</style>
+{
+  eventsAfter.length > 0 && (
+    <>
+      <a class="more-events-link cursor-pointer select-none">
+        Show {eventsAfter.length} more events
+      </a>
+      <div class="more-events hidden">
+        {eventsAfter.map((event) => (
+          <EventCell event={event} guildTZ={guild.timezone} />
+        ))}
+      </div>
+    </>
+  )
+}

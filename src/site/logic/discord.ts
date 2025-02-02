@@ -8,8 +8,8 @@ import {
 import { z } from "zod";
 import dayjs from "dayjs";
 
-/** Expand each recurring event to this many occurrences in the future. */
-const RECURRENCE_EXPAND_COUNT = 4;
+/** If not specified, expand each recurring event to this many occurrences in the future. */
+const DEFAULT_RECURRENCE_EXPAND_COUNT = 10;
 
 // Cache all events, once per compilation.
 let allEvents: DiscordEvent[] | null = null;
@@ -101,8 +101,12 @@ async function login() {
   });
 }
 
-async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
+async function getScheduledEvents(
+  guild: Guild,
+  recurrenceExpandCount: number
+): Promise<DiscordEvent[]> {
   const events = await guild.scheduledEvents.fetch();
+  console.log(events);
   const parsed = events
     .map((event) => {
       const result = discordEventSchema.safeParse(event);
@@ -120,6 +124,7 @@ async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
 
   const expanded = parsed
     .map((event) => {
+      console.log(event);
       if (!event.recurrenceRule) return [event];
       const rr = event.recurrenceRule;
 
@@ -127,7 +132,7 @@ async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
         event.scheduledEndAt &&
         dayjs(event.scheduledEndAt).diff(dayjs(event.scheduledStartAt));
 
-      const iter = rrToDates(rr).take(RECURRENCE_EXPAND_COUNT);
+      const iter = rrToDates(rr).take(recurrenceExpandCount);
       return Array.from(iter).map((start) => ({
         ...event,
         scheduledStartAt: start,
@@ -149,7 +154,7 @@ async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
   return structured;
 }
 
-async function getScheduledEventsForAllGuilds() {
+async function getScheduledEventsForAllGuilds(recurrenceExpandCount: number) {
   if (allEvents !== null) return allEvents;
 
   const client = await login();
@@ -160,7 +165,9 @@ async function getScheduledEventsForAllGuilds() {
   console.log(`Found ${guilds.length} guilds`);
 
   allEvents = (
-    await Promise.all(guilds.map(async (g) => getScheduledEvents(g)))
+    await Promise.all(
+      guilds.map(async (g) => getScheduledEvents(g, recurrenceExpandCount))
+    )
   ).flat();
   console.log(`Found ${allEvents.length} events`);
   allEvents.sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -168,7 +175,10 @@ async function getScheduledEventsForAllGuilds() {
   return allEvents;
 }
 
-export async function getScheduledEventsForGuild(guildID: string) {
-  const events = await getScheduledEventsForAllGuilds();
+export async function getScheduledEventsForGuild(
+  guildID: string,
+  recurrenceExpandCount = DEFAULT_RECURRENCE_EXPAND_COUNT
+) {
+  const events = await getScheduledEventsForAllGuilds(recurrenceExpandCount);
   return events.filter((e) => e.guildID === guildID);
 }

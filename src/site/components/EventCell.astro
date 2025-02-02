@@ -1,0 +1,88 @@
+---
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { type DiscordEvent } from "../logic/discord";
+import Button from "./Button.astro";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+interface Props {
+  event: DiscordEvent;
+  guildTZ: string;
+}
+const { event, guildTZ } = Astro.props;
+
+const GCAL_DATE_FORMAT = "YYYYMMDDTHHmmss[Z]";
+
+function toGcalDate(date: string) {
+  return dayjs(date).utc().format(GCAL_DATE_FORMAT);
+}
+
+function queryString(params: Record<string, string>) {
+  return Object.entries(params)
+    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+    .join("&");
+}
+
+function gcalLink(event: DiscordEvent) {
+  const { name, desc, start, end, location } = event;
+  const dates = end
+    ? `${toGcalDate(start.toISOString())}/${toGcalDate(end.toISOString())}`
+    : toGcalDate(start.toISOString());
+  const data = {
+    dates,
+    text: name,
+    details: desc ?? "",
+    location: location ?? "",
+  };
+  return `https://calendar.google.com/calendar/r/eventedit?${queryString(data)}`;
+}
+
+function formatDate(event: DiscordEvent) {
+  const start = dayjs(event.start).tz(guildTZ);
+  const end = dayjs(event.end).tz(guildTZ);
+  return `${start.format("ddd MMM D")} ${start.format("ha")}-${end.format("ha")}`;
+}
+---
+
+<div class="my-4 border-slate-300 border-2 rounded-md">
+  <details>
+    <summary
+      class="py-4 px-4 select-none hover:bg-slate-700 transition-all cursor-pointer">
+      <div class="flex justify-between gap-6">
+        <div class="font-bold">{event.name}</div>
+        <div>{formatDate(event)}</div>
+        <div>{event.location}</div>
+      </div>
+    </summary>
+    <div class="px-4 pt-2">
+      {event.desc}
+      <div class="mt-4">
+        <Button
+          newTab
+          size="sm"
+          text="Directions"
+          href={`https://www.google.com/maps/search/?api=1&query=${event.location}`}
+          classname="mr-2"
+        />
+        <Button
+          newTab
+          size="sm"
+          text="Add to Google Calendar"
+          href={gcalLink(event)}
+        />
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
