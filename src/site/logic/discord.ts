@@ -46,7 +46,7 @@ const discordEventSchema = z.object({
   scheduledStartAt: z.date(),
   scheduledEndAt: z.date().optional(),
   entityMetadata: z.object({ location: z.string() }).optional(),
-  recurrenceRule: recurrenceRuleSchema.optional(),
+  recurrenceRule: recurrenceRuleSchema.nullish(),
 });
 
 // https://discord.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-recurrence-rule-object-guild-scheduled-event-recurrence-rule-frequency
@@ -78,7 +78,8 @@ export function* rrToDates(
   const freq = FREQUENCIES[rr.frequency];
   while (true) {
     if (end && date.isAfter(end)) break;
-    yield date.toDate();
+    // Don't yield dates in the past
+    if (date.isAfter(dayjs())) yield date.toDate();
     date = date.add(rr.interval, freq);
   }
   return null;
@@ -109,8 +110,8 @@ async function getScheduledEvents(guild: Guild): Promise<DiscordEvent[]> {
         console.error({
           error: "Error parsing event from Discord",
           event,
-          message: result.error.errors,
         });
+        console.dir(result.error.errors);
         return null;
       }
       return result.data;
