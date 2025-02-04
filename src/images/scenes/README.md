@@ -6,6 +6,8 @@ Scene images were sourced from Wikimedia Commons and downsized using
 # Image Attribution
 
 - Baltimore: https://commons.wikimedia.org/wiki/File:Baltimore_Skyline_2.jpg
+- Cincinnati:
+  https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_viewed_from_Devou_Park.jpg
 - Chicago: https://commons.wikimedia.org/wiki/File:Chicago_sunrise_1.jpg
 - Denver: https://commons.wikimedia.org/wiki/File:Full_Denver_skyline.jpg
 - Indianapolis:

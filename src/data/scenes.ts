@@ -1,5 +1,6 @@
 import Baltimore from "../images/scenes/baltimore.jpg";
 import Chicago from "../images/scenes/chicago.jpg";
+import Cincinnati from "../images/scenes/cincinnati.jpg";
 import Denver from "../images/scenes/denver.jpg";
 import Indianapolis from "../images/scenes/indianapolis.jpg";
 import Jacksonville from "../images/scenes/jacksonville.jpg";
@@ -33,6 +34,18 @@ export const scenes = {
     site: {
       kind: "external",
       href: "https://www.facebook.com/groups/mercurysquadchicago",
+    },
+  },
+
+  cincinnati: {
+    name: "Cincinnati",
+    splash: {
+      image: Cincinnati,
+      alt: "Cincinnati skyline viewed from Devou Park",
+    },
+    site: {
+      kind: "external",
+      href: "https://linktr.ee/kqcin",
     },
   },
 
