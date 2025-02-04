@@ -9,7 +9,6 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  srcDir: "src/site",
   integrations: [react(), tailwind()],
   adapter: netlify(),
 });
