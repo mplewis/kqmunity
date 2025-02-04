@@ -40,9 +40,11 @@ const eventsAfter = e.slice(showMoreAfter);
 {
   eventsAfter.length > 0 && (
     <>
-      <a class="more-events-link cursor-pointer select-none">
-        Show {eventsAfter.length} more events
-      </a>
+      <div class="mb-4 lg:mb-0">
+        <a class="more-events-link cursor-pointer select-none">
+          Show {eventsAfter.length} more events
+        </a>
+      </div>
       <div class="more-events hidden">
         {eventsAfter.map((event) => (
           <EventCell event={event} guildTZ={guild.timezone} />
