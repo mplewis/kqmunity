@@ -21,12 +21,18 @@ const eventsAfter = e.slice(showMoreAfter);
 ---
 
 <script>
-  document.querySelectorAll(".more-events-link").forEach((el) => {
-    el.addEventListener("click", () => {
-      document.querySelector(".more-events")?.classList.remove("hidden");
-      document.querySelector(".more-events-link")?.classList.add("hidden");
-    });
-  });
+  const _me = document.querySelectorAll(".more-events");
+  const _mel = document.querySelectorAll(".more-events-link");
+  if (!_me || !_mel)
+    throw new Error("EventsTable component is missing required elements");
+  const me = _me;
+  const mel = _mel;
+
+  // @ts-expect-error
+  window.showMoreEvents = () => {
+    me.forEach((el) => el.classList.remove("hidden"));
+    mel.forEach((el) => el.classList.add("hidden"));
+  };
 </script>
 
 {
@@ -41,7 +47,9 @@ const eventsAfter = e.slice(showMoreAfter);
   eventsAfter.length > 0 && (
     <>
       <div class="mb-4 lg:mb-0">
-        <a class="more-events-link cursor-pointer select-none">
+        <a
+          class="more-events-link cursor-pointer select-none"
+          onclick="showMoreEvents()">
           Show {eventsAfter.length} more events
         </a>
       </div>
